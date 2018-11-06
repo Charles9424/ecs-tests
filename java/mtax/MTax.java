@@ -70,10 +70,7 @@ public class MTax implements Constant {
                     }
             }
         }
-//        else {
-//            errorList.add("El documento no tiene tasas");
-//        }
-        
+
         return errorList;
     }
     
