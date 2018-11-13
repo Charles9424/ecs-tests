@@ -31,13 +31,7 @@ public class MTax implements Constant {
                 if(tax.getId() != null){
                     validIds.add(tax.getId().toString());
                 }
-                if(tax.getAmount() == null) {
-                    errorList.add("El importe es obligatorio");
-                }
-
-                if(tax.getTax() == null) {
-                    errorList.add("El impuesto es obligatorio");
-                }
+               
                 else if(!taxCategoryList.contains(tax.getTax())) {
                     errorList.add("El impuesto no es un dato valido");
                 }
@@ -57,11 +51,21 @@ public class MTax implements Constant {
         
         return errorList;
         
-        
-        
-        
+    
     }
     
+    private static boolean TaxImport(List<String> errorList, X_Tax tax) {
+    boolean TaxImport=false;
+    if(tax.getAmount() == null) {
+        errorList.add("El impuesto es obligatorio");
+        }
+    else if(tax.getTax() == null) {
+    	errorList.add("El impuesto es obligatorio");
+    }
+    
+    else TaxImport=true;
+    return TaxImport;
+    }
     
     private static void Import_obli(List<String> errorList, X_Tax tax) {
     	boolean Import_obli=false;
