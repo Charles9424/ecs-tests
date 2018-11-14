@@ -17,26 +17,20 @@ public class MTax implements Constant {
     }
     
     public static List<String> validate(List<X_Tax> xTaxList) {
-        
-        List<String> errorList = new ArrayList<>();
-        List<String> validIds = new ArrayList<>();
-        
-        
-        List<String> taxCategoryList = MInfoTaxCategory.getTaxCategoryStringList();
-        
-        if(xTaxList != null && xTaxList.size() > 0) {
-            
-            int cont = 0;
-       
-            if(cont<=0){
-                errorList.add("Debe de incluir al menos una tasa no local");
-            }    
-                
-        }
+      	 List<String> errorList = new ArrayList<>();
+       	 List<String> validIds = new ArrayList<>();
+       	 if(XTaxListNotValid==true) return errorList;
+       	
         return errorList;
         
     
     }
+    
+    private static void checkXTaxes(List<X_Tax> xTaxList, List<String> errorList, List<String> validIds) {
+    	boolean Local_Taxes = validXtaxes(xTaxList, errorList, validIds);
+        if(Local_Taxes)
+            errorList.add("Tasa local erronea");
+}
     
     private static boolean validXtaxes(List<X_Tax> XtaxList, List<String> errorList<String> validIds) {
     	boolean TaxesLocal=false;
