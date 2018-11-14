@@ -31,7 +31,7 @@ public class MTax implements Constant {
                 if(tax.getId() != null){
                     validIds.add(tax.getId().toString());
                 }
-               
+      
                 else if(!taxCategoryList.contains(tax.getTax())) {
                     errorList.add("El impuesto no es un dato valido");
                 }
@@ -45,14 +45,22 @@ public class MTax implements Constant {
             }    
                 
         }
-       else {
-           errorList.add("El documento no tiene tasas");
-           }
-        
         return errorList;
         
     
     }
+    
+    
+    protected static boolean XTaxListNotValid(List<X_Tax> xTaxList, List<String> errorList) {
+    	boolean XTaxListNotValid=xTaxList;
+    	xTaxList =null;
+    	if(XTaxListNotValid) {
+    		return false;
+    	}
+    	errorList.add("el documento no tiene tasas");
+    	return true;
+    }
+    
     
     private static boolean TaxImport(List<String> errorList, X_Tax tax) {
     boolean TaxImport=false;
