@@ -27,19 +27,7 @@ public class MTax implements Constant {
         if(xTaxList != null && xTaxList.size() > 0) {
             
             int cont = 0;
-            for (X_Tax tax : xTaxList) {
-                if(tax.getId() != null){
-                    validIds.add(tax.getId().toString());
-                }
-      
-                else if(!taxCategoryList.contains(tax.getTax())) {
-                    errorList.add("El impuesto no es un dato valido");
-                }
-
-                if(!tax.isLocal()){
-                    cont++;
-                }
-            }
+       
             if(cont<=0){
                 errorList.add("Debe de incluir al menos una tasa no local");
             }    
@@ -49,6 +37,19 @@ public class MTax implements Constant {
         
     
     }
+    
+    private static boolean validXtaxes(List<X_Tax> XtaxList, List<String> errorList<String> validIds) {
+    	boolean TaxesLocal=false;
+    	for (X_Tax tax : xTaxList) {
+    		if(tax.getId()!=null) {
+    			validIds.add(tax.getId().toString());
+    		}
+    		else
+    			errorList.add("El impuesto no es un dato valido");  		
+    	}
+    	return TaxesLocal;
+    }
+    
     
     
     protected static boolean XTaxListNotValid(List<X_Tax> xTaxList, List<String> errorList) {
